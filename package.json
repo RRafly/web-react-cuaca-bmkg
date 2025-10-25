@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build --base=./",
-    "stage": "tsc -b && vite build --mode development",
+    "build": "tsc -b && vite build",
+
+    "build-gh": "tsc -b && vite build --base=/web-react-cuaca-bmkg/",
+    "stage-gh": "tsc -b && vite build --mode development --base=/web-react-cuaca-bmkg/",
+
     "lint": "eslint .",
     "preview": "vite preview"
   },
