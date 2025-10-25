@@ -1,13 +1,25 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { Outlet } from 'react-router'
+import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from './hooks'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const weatherData = useAppSelector((state) => state.weather.data)
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    console.log('App mounted')
+    if (weatherData) { 
+      navigate("/dashboard")
+    } else {
+      navigate("/form")
+    }
+  }, [])
+  
   return (
     <>
-      <main className='container min-h-screen mx-auto text-left'>
+      <main className='overflow-hidden'>
       <Outlet/>
       </main>
     </>

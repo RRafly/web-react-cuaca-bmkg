@@ -1,19 +1,23 @@
-export interface Provinsi {
-    kode_wilayah: Array<string>,
-    provinsi: string,
-    kota: Array<Kota>
+export interface Desa {
+    kode_wilayah: string[];
+    desa: string;
+}
+
+export interface Kecamatan {
+    kode_wilayah: string[];
+    kecamatan: string;
+    desa: Desa[];
 }
 
 export interface Kota {
-    kode_wilayah: Array<string>,
-    kota: string,
-    type: string,
-    kecamatan: Array<{
-        kode_wilayah: Array<string>,
-        kecamatan: string,
-        desa: Array<{
-            kode_wilayah: Array<string>,
-            desa: string
-        }>
-    }>
+    kode_wilayah: string[];
+    kota: string;
+    type: string;
+    kecamatan: Kecamatan[];
+}
+
+export interface Provinsi {
+    kode_wilayah: string[];
+    provinsi: string;
+    kota: Kota[];
 }

@@ -1,0 +1,15 @@
+:root {
+    --white-gradient: linear-gradient(135deg, #ffffff 0%, #e9e3ff 100%);
+}
+
+.white-gradient-bg {
+    background: var(--white-gradient);
+}
+
+.sup-celcius {
+    top: -0.9em;
+}
+
+.sup-celcius-6xl {
+    top: -1.4em;
+}
