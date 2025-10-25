@@ -1,50 +1,69 @@
-# React + TypeScript + Vite
+# Aplikasi cuaca  BMKG wilayah tingkat 4 berbasis React JS
+Aplikasi web untuk menampilkan prakiraan cuaca wilayah Indonesia menggunakan API publik wilayah tingkat 4 BMKG.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tech
+- React + TypeScript (Vite)
+- React Router
+- Redux
+- Tailwind CSS
 
-Currently, two official plugins are available:
+## Data/API
+- API publik wilayah tingkat 4 BMKG [data.bmkg.go.id/prakiraan-cuaca](https://data.bmkg.go.id/prakiraan-cuaca/)
+- Kode Wilayah JSON dari [RRafly/Kode-Wilayah-CSV-to-JSON](https://github.com/RRafly/Kode-Wilayah-CSV-to-JSON), Keputusan Menteri Dalam Negeri Nomor 100.1.1-6117 Tahun 2022 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> [!WARNING]
+> Wajib untuk mencantumkan BMKG (Badan Meteorologi, Klimatologi, dan Geofisika) sebagai sumber data dan menampilkannya pada aplikasi/sistem Anda.
 
-## Expanding the ESLint configuration
+## Fitur
+- Halaman Input form Provinsi dan Kota
+  (Karena API BMKG perlu menggunakan kode wilayah administrasi tingkat IV provinsi.kotkab.kecamatan.desa, Maka kecamatan dan desa di pilih secara otomatis yang terdekat)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Halaman prakiraan cuaca terdiri:
+  - Provinsi dan kota yang di pilih
+  - Ganti wilayah
+  - Data prakiraan per 1 hari
+  - Data prakiraan per 3 jam
 
-- Configure the top-level `parserOptions` property like this:
+## Route
+- /form       Halaman Input form Provinsi dan Kota
+- /dashboard  Halaman prakiraan cuaca
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Cara Menjalankan
+
+1. Install dependency:
+```sh
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2. Jalankan development server:
+```sh
+npm run dev
 ```
+
+3. Atau Build production:
+```sh
+npm run build
+npm run preview
+```
+
+## Struktur
+- Entry & konfigurasi:
+  - [src/main.tsx](src/main.tsx)
+  - [src/App.tsx](src/App.tsx)
+  - [vite.config.ts](vite.config.ts)
+- State:
+  - [`store`](src/store.ts) — Redux store
+  - [`wilayahSet`](src/features/wilayah/wilayahSlice.ts) — slice wilayah
+  - [`weatherSet`](src/features/weather/weatherSlice.ts) — slice cuaca
+- API:
+  - [`getWeather`](src/api/BMKGApi.ts) — endpoint BMKG
+- Form & data:
+  - [`LocationForm`](src/form/LocationForm.tsx) — form pilih provinsi dan kota
+  - [src/json/wilayah.json](src/json/wilayah.json) — data wilayah (provinsi & kota)
+- UI:
+  - [`WeatherCard`, `WeatherNowCard`](src/Components/Dashboard/WeatherComp.tsx) — component tampilan cuaca
+  - [src/Components/Dashboard/Dashboard.module.css](src/Components/Dashboard/Dashboard.module.css) (styling)
+- Helper & hook:
+  - [src/helpers.ts]
+  - [src/hooks.ts]
+

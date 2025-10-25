@@ -1,8 +1,6 @@
-import { Cuaca } from "../types/cuaca"
 import { useNavigate } from "react-router"
 import { useAppSelector } from "../hooks"
-import { WeatherCard, WeatherNowCard } from "../Components/Dashboard/WeatherComp"
-import { daysInWeek, monthsInYear } from "../constants"
+import { WeatherNowCard, DayCard } from "../Components/Dashboard/WeatherComp"
 
 export function Dashboard() {
 
@@ -49,28 +47,3 @@ export function Dashboard() {
         </>
     )
 }
-
-
-interface DayCardProps {
-    cuaca: Cuaca[] | undefined;
-}
-
-function DayCard({ cuaca }: DayCardProps) {
-    if (!cuaca) {
-        return <div>Loading...</div>;
-    }
-    const date = new Date(cuaca[0].datetime);
-    return (
-        <div className="shadow-md p-4 me-3 rounded-md bg-white flex flex-col gap-3">
-            <div>
-                <h3 className="font-semibold text-2xl">{daysInWeek[date.getDay()]} {date.getDate()} {monthsInYear[date.getMonth()]} {date.getFullYear()}</h3>
-            </div>
-            <div className="flex flex-row gap-4 items-stretch">
-                {cuaca.map((cuaca, index) => (
-                    <WeatherCard key={index} weatherData={cuaca} />
-                ))}
-            </div>
-        </div>
-    )
-}
-

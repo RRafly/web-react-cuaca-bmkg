@@ -2,6 +2,7 @@
 import { Cuaca } from "../../types/cuaca"
 import styles from "./Dashboard.module.css"
 import { getFormattedHour } from "../../helpers"
+import { daysInWeek, monthsInYear } from "../../constants"
 
 function WeatherCard({ weatherData }: { weatherData: Cuaca }) {
     const date = new Date(weatherData.datetime ? weatherData.datetime : "0000-06-01T23:00:00+07:00");
@@ -65,4 +66,24 @@ function WeatherNowCard({ weatherData }: { weatherData: Cuaca }) {
     )
 }
 
-export { WeatherCard, WeatherNowCard }
+
+function DayCard({ cuaca }: { cuaca: Cuaca[] | undefined }) {
+    if (!cuaca) {
+        return <div>Loading...</div>;
+    }
+    const date = new Date(cuaca[0].datetime);
+    return (
+        <div className="shadow-md p-4 me-3 rounded-md bg-white flex flex-col gap-3">
+            <div>
+                <h3 className="font-semibold text-2xl">{daysInWeek[date.getDay()]} {date.getDate()} {monthsInYear[date.getMonth()]} {date.getFullYear()}</h3>
+            </div>
+            <div className="flex flex-row gap-4 items-stretch">
+                {cuaca.map((cuaca, index) => (
+                    <WeatherCard key={index} weatherData={cuaca} />
+                ))}
+            </div>
+        </div>
+    )
+}
+
+export { WeatherCard, WeatherNowCard, DayCard }
