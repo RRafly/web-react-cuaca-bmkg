@@ -1,7 +1,7 @@
-# Aplikasi cuaca  BMKG wilayah tingkat 4 berbasis React JS
+# Web cuaca BMKG tingkat adm4 berbasis React JS
 Aplikasi web untuk menampilkan prakiraan cuaca wilayah Indonesia menggunakan API publik wilayah tingkat 4 BMKG.
 
-## Tech
+## Stack
 - React + TypeScript (Vite)
 - React Router
 - Redux
@@ -15,8 +15,8 @@ Aplikasi web untuk menampilkan prakiraan cuaca wilayah Indonesia menggunakan API
 > Wajib untuk mencantumkan BMKG (Badan Meteorologi, Klimatologi, dan Geofisika) sebagai sumber data dan menampilkannya pada aplikasi/sistem Anda.
 
 ## Fitur
-- Halaman Input form Provinsi dan Kota
-  (Karena API BMKG perlu menggunakan kode wilayah administrasi tingkat IV provinsi.kotkab.kecamatan.desa, Maka kecamatan dan desa di pilih secara otomatis yang terdekat)
+- Halaman Input form Provinsi dan Kota.
+  (Karena API BMKG perlu menggunakan kode wilayah administrasi tingkat IV, `provinsi.kotkab.kecamatan.desa`, Maka kecamatan dan desa di pilih secara otomatis yang terdekat)
 
 - Halaman prakiraan cuaca terdiri:
   - Provinsi dan kota yang di pilih
@@ -25,8 +25,8 @@ Aplikasi web untuk menampilkan prakiraan cuaca wilayah Indonesia menggunakan API
   - Data prakiraan per 3 jam
 
 ## Route
-- /form       Halaman Input form Provinsi dan Kota
-- /dashboard  Halaman prakiraan cuaca
+- `/form`       Halaman Input form Provinsi dan Kota
+- `/dashboard`  Halaman prakiraan cuaca
 
 ## Cara Menjalankan
 
@@ -47,10 +47,10 @@ npm run preview
 ```
 
 ## Struktur
-- Entry & konfigurasi:
-  - [src/main.tsx](src/main.tsx)
-  - [src/App.tsx](src/App.tsx)
-  - [vite.config.ts](vite.config.ts)
+- Entry:
+  - [`src/main.tsx`](src/main.tsx) 
+  - [`src/App.tsx`](src/App.tsx)
+  - [`vite.config.ts`](vite.config.ts)
 - State:
   - [`store`](src/store.ts) — Redux store
   - [`wilayahSet`](src/features/wilayah/wilayahSlice.ts) — slice wilayah
@@ -59,11 +59,8 @@ npm run preview
   - [`getWeather`](src/api/BMKGApi.ts) — endpoint BMKG
 - Form & data:
   - [`LocationForm`](src/form/LocationForm.tsx) — form pilih provinsi dan kota
-  - [src/json/wilayah.json](src/json/wilayah.json) — data wilayah (provinsi & kota)
+  - [`src/json/wilayah.json`](src/json/wilayah.json) — data wilayah (provinsi & kota)
 - UI:
   - [`WeatherCard`, `WeatherNowCard`](src/Components/Dashboard/WeatherComp.tsx) — component tampilan cuaca
-  - [src/Components/Dashboard/Dashboard.module.css](src/Components/Dashboard/Dashboard.module.css) (styling)
-- Helper & hook:
-  - [src/helpers.ts]
-  - [src/hooks.ts]
+  - [`src/Components/Dashboard/Dashboard.module.css`](src/Components/Dashboard/Dashboard.module.css) (styling)
 
