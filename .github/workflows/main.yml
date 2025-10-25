@@ -23,5 +23,5 @@ jobs:
       run: npm install
 
     - name: build
-      run: tsc -b && vite build --mode development
+      run: npm run stage
   
