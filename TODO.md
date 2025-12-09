@@ -1,0 +1,2 @@
+- [x] Change background to dark in index.css
+- [x] Update text colors if needed for visibility
